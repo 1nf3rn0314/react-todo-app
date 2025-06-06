@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+:root {
+  --distance: 3px;
+}
+
+.add-btn {
+  box-shadow: #010101 var(--distance) var(--distance) 5px;
+}
+
+.add-btn:active {
+  box-shadow: none;
+  transform: translate(var(--distance), var(--distance));
+  transition: all 50ms ease-out;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.main-todo-app {
+  box-shadow: #010101 5px 5px;
+}
