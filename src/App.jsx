@@ -20,11 +20,14 @@ function App() {
     }
   }, [])
   
+  useEffect(() => {
+    saveToLS(todos)
+  }, [todos])
+  
 
   const handleAdd = () => {
     setTodos([...todos, {id: uuidv4(), text: currTodo, isDone: false}])
     setCurrTodo("")
-    saveToLS(todos)
   }
 
   const handleChange = (e) => {
@@ -40,7 +43,6 @@ function App() {
       return todo.id !== id
     })
     setTodos(newTodos)
-    saveToLS(newTodos)
   }
 
   const handleDelete = (id) => {
@@ -48,7 +50,6 @@ function App() {
       return todo.id !== id
     })
     setTodos(newTodos)
-    saveToLS(newTodos)
   }
 
   const handleCheckbox = (id) => {
@@ -58,7 +59,6 @@ function App() {
     let newTodos = [...todos]
     newTodos[index].isDone = !newTodos[index].isDone
     setTodos(newTodos)
-    saveToLS(newTodos)
   }
 
   return (
