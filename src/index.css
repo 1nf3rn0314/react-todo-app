@@ -21,3 +21,7 @@
 .main-todo-app {
   box-shadow: #010101 5px 5px;
 }
+
+a {
+  font-weight: 600;
+}

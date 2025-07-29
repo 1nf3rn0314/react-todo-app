@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import { FaSave } from "react-icons/fa";
 import { MdDelete, MdEdit } from "react-icons/md";
+import Footer from './components/Footer';
 
 function App() {
   const [currTodo, setCurrTodo] = useState("");
@@ -67,7 +68,7 @@ function App() {
   return (
     <>
       {/* <Navbar/> */}
-      <div className="content bg-blue-100 p-10 min-h-screen">
+      <div className="content bg-blue-100 min-h-screen py-10">
         <div className="main-todo-app w-full sm:w-[60vw] lg:w-[25vw] mx-auto bg-blue-300 p-5 rounded-lg flex flex-col gap-4 h-[60vh] border border-1.5">
           <div className="heading text-2xl">🎯️ To-Do List</div>
           <div className="todo-input-div flex gap-2 items-center">
@@ -92,6 +93,7 @@ function App() {
             })}
           </div>
         </div>
+        <Footer/>
       </div>
     </>
   )
