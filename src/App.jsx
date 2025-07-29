@@ -5,12 +5,15 @@ import { FaSave } from "react-icons/fa";
 import { MdDelete, MdEdit } from "react-icons/md";
 
 function App() {
-  const [currTodo, setCurrTodo] = useState("")
-  const [todos, setTodos] = useState([])
-
-  const saveToLS = (todos) => {
-    localStorage.setItem("todos", JSON.stringify(todos))
-  }
+  const [currTodo, setCurrTodo] = useState("");
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem("todos");
+    if (savedTodos) {
+      return JSON.parse(savedTodos);
+    } else {
+      return [];
+    }
+  });
 
   useEffect(() => {
     let todoString = localStorage.getItem("todos");
@@ -21,7 +24,7 @@ function App() {
   }, [])
   
   useEffect(() => {
-    saveToLS(todos)
+    localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos])
   
 
@@ -63,7 +66,7 @@ function App() {
 
   return (
     <>
-      <Navbar/>
+      {/* <Navbar/> */}
       <div className="content bg-blue-100 p-10 min-h-screen">
         <div className="main-todo-app w-full sm:w-[60vw] lg:w-[25vw] mx-auto bg-blue-300 p-5 rounded-lg flex flex-col gap-4 h-[60vh] border border-1.5">
           <div className="heading text-2xl">🎯️ To-Do List</div>
@@ -72,7 +75,7 @@ function App() {
             <button onClick={handleAdd} disabled={currTodo.length === 0} className='add-btn bg-blue-500 rounded-full text-white px-4 py-2 hover:cursor-pointer hover:bg-blue-800 disabled:bg-gray-500 disabled:cursor-not-allowed'><FaSave/></button>
           </div>
           <div className={"todo-items flex flex-col gap-2 overflow-y-scroll " + (todos.length === 0 && "items-center my-auto")}>
-            {todos.length === 0 && <div className='no-todos'>Nothing to show. Add a new to-do.</div>}
+            {todos.length === 0 && <div className='no-todos'>Nothing to show. Add a new task.</div>}
             {todos.map(todo => {
               return (
                 <div key={todo.id} className="todo-item flex justify-between items-center bg-blue-200 px-3 py-1 rounded-lg gap-3">
